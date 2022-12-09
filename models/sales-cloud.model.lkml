@@ -18,4 +18,22 @@ explore: markets {}
 
 explore: products {}
 
-explore: transactions {}
+explore: transactions {
+  join: customers {
+    sql_on: ${transactions.customer_code} = ${customers.customer_code} ;;
+    type: left_outer
+    relationship: many_to_one
+  }
+
+  join: markets {
+    sql_on: ${transactions.market_code} = ${markets.markets_code} ;;
+    type: left_outer
+    relationship: many_to_one
+  }
+
+  join: products {
+    sql_on: ${transactions.product_code} = ${products.product_code} ;;
+    type: left_outer
+    relationship: many_to_one
+  }
+}
